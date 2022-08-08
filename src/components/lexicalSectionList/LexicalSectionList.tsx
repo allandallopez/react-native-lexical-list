@@ -17,6 +17,7 @@ interface LexicalSectionListProps extends SectionListProps<any> {
   sectionFooterHeight?: number;
   separatorHeight?: number;
   listHeaderHeight?: number;
+  onSectionSelect?: () => void; 
   disableScrollToTopOnDataUpdate?: boolean;
   alphabetListOptions: { itemHeight: number; [key: string]: any };
 }
@@ -81,6 +82,7 @@ const LexicalSectionList = (props: LexicalSectionListProps) => {
           data={props.sections.map((section) => section.title)}
           onItemSelect={(item, index) => {
             if (sectionListRef) {
+              props.onSectionSelect ? props.onSectionSelect() : null;
               sectionListRef.scrollToLocation({
                 sectionIndex: index,
                 itemIndex: 0,
